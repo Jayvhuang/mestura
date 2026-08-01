@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mestura — Free Bilingual Cooking & Kitchen Calculators</title>
+<meta name="description" content="Mestura is a free, private bilingual (English / 中文) kitchen toolkit: cooking unit converter, recipe scaler, oven temperature converter, ingredient substitutions, nutrition estimator, liquid measures, cooking-time calculator, and serving-size planner. No login, all in your browser." />
+<meta name="keywords" content="cooking converter, cups to grams, recipe scaler, oven temperature converter, ingredient substitution, nutrition calculator, liquid measure converter, cooking time calculator, serving size calculator, 烹饪单位换算, 食谱缩放, 烤箱温度转换, 食材替换, 营养估算" />
+<meta name="author" content="Mestura" />
+<meta name="robots" content="index,follow" />
+<meta name="last-modified" content="2026-07-16" />
+<link rel="canonical" href="https://mestura.com/" />
+<link rel="alternate" hreflang="en" href="https://mestura.com/" />
+<link rel="alternate" hreflang="zh" href="https://mestura.com/?lang=zh" />
+<link rel="alternate" hreflang="x-default" href="https://mestura.com/" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Mestura" />
+<meta property="og:title" content="Mestura — Free Bilingual Cooking & Kitchen Calculators" />
+<meta property="og:description" content="Private, no-login kitchen toolkit: convert cups to grams, scale recipes, convert oven temperatures, swap ingredients, estimate nutrition, and plan servings. English / 中文." />
+<meta property="og:url" content="https://mestura.com/" />
+<meta property="og:image" content="https://mestura.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mestura — Free Bilingual Cooking & Kitchen Calculators" />
+<meta name="twitter:description" content="Private, no-login kitchen toolkit in English and 中文." />
+<meta name="twitter:image" content="https://mestura.com/og-image.png" />
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Mestura",
+  "url":"https://mestura.com/",
+  "inLanguage":["en","zh"],
+  "description":"Free bilingual cooking and kitchen calculators.",
+  "potentialAction":{"@type":"SearchAction","target":"https://mestura.com/#tools","query-input":"required name=tool"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"Mestura Kitchen Tools",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Cooking Unit Converter","url":"https://mestura.com/#tool-unit"},
+    {"@type":"ListItem","position":2,"name":"Recipe Scaler","url":"https://mestura.com/#tool-scaler"},
+    {"@type":"ListItem","position":3,"name":"Oven Temperature Converter","url":"https://mestura.com/#tool-oven"},
+    {"@type":"ListItem","position":4,"name":"Ingredient Substitution Finder","url":"https://mestura.com/#tool-sub"},
+    {"@type":"ListItem","position":5,"name":"Nutrition Estimator","url":"https://mestura.com/#tool-nutri"},
+    {"@type":"ListItem","position":6,"name":"Liquid Measure Converter","url":"https://mestura.com/#tool-liquid"},
+    {"@type":"ListItem","position":7,"name":"Cooking Time Calculator","url":"https://mestura.com/#tool-time"},
+    {"@type":"ListItem","position":8,"name":"Serving Size Calculator","url":"https://mestura.com/#tool-serving"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Mestura",
+  "url":"https://mestura.com/",
+  "logo":"https://mestura.com/favicon.svg",
+  "description":"Free bilingual cooking and kitchen calculators."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How many grams are in a cup of flour?",
+     "acceptedAnswer":{"@type":"Answer","text":"All-purpose flour is about 125 g per US cup when spooned and leveled. Different ingredients have different densities, so always convert by ingredient. Mestura's unit converter uses per-ingredient weights for accuracy."}},
+    {"@type":"Question","name":"How do I convert Fahrenheit to Celsius for my oven?",
+     "acceptedAnswer":{"@type":"Answer","text":"Use C = (F - 32) x 5/9. For example, 350F is about 177C (Gas Mark 4). Mestura's oven converter does this instantly and also gives the convection (fan) equivalent."}},
+    {"@type":"Question","name":"How do I scale a recipe for more or fewer servings?",
+     "acceptedAnswer":{"@type":"Answer","text":"Divide your target servings by the original servings to get a factor, then multiply every quantity by that factor. Mestura's Recipe Scaler scales each line automatically."}},
+    {"@type":"Question","name":"Are the conversions and nutrition values exact?",
+     "acceptedAnswer":{"@type":"Answer","text":"They are reliable, commonly-used approximations for home cooking. Weights vary by measuring method and brand; for baking precision use a kitchen scale. Nutrition figures are per-100g estimates for planning, not medical advice."}},
+    {"@type":"Question","name":"Is Mestura free and private?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs in your browser. We do not upload your inputs, and there is no login or tracking cookies for the tools."}},
+    {"@type":"Question","name":"Does Mestura work on mobile?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes. The site is responsive and works on phones, tablets, and desktops, online and offline once loaded."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#fff7f1; --surface:#fffdfb; --surface-2:#fdeee4; --text:#2a1c14; --muted:#7c6657;
+  --brand:#e2643d; --brand-2:#f4a259; --brand-ink:#b8431f; --line:#f0dccd;
+  --good:#2f8f5b; --shadow:0 10px 30px rgba(160,90,50,.12);
+  --radius:16px; --maxw:1100px;
+}
+html.dark{
+  --bg:#1a130e; --surface:#241a13; --surface-2:#2e2118; --text:#f6ece3; --muted:#b29a89;
+  --brand:#f0875c; --brand-2:#f4a259; --brand-ink:#ffb187; --line:#3a2a1f;
+  --good:#5fc28a; --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--brand-ink);text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+header.site{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:14px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;letter-spacing:-.5px;color:var(--text)}
+.logo .mk{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#fff;font-size:16px;box-shadow:var(--shadow)}
+.logo b{color:var(--brand)}
+.spacer{flex:1}
+.btn-ghost{background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer;font-weight:600;transition:.15s}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand-ink)}
+.hero{padding:54px 0 30px;text-align:center}
+.hero h1{font-size:clamp(30px,5vw,46px);margin:0 0 12px;letter-spacing:-1px;line-height:1.15}
+.hero h1 .ac{background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(15px,2.2vw,19px);color:var(--muted);max-width:680px;margin:0 auto 22px}
+.cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;border-radius:999px;padding:14px 26px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.15s}
+.cta:hover{transform:translateY(-1px)}
+.toolbar{position:sticky;top:64px;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 0}
+.grid8{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.tbtn{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 8px;cursor:pointer;transition:.15s;text-align:center}
+.tbtn:hover{border-color:var(--brand);transform:translateY(-2px)}
+.tbtn.active{border-color:var(--brand);background:var(--surface-2);box-shadow:var(--shadow)}
+.tbtn .ic{font-size:22px}
+.tbtn span{font-size:12.5px;font-weight:600;color:var(--text)}
+main{padding:18px 0 40px}
+.tool{scroll-margin-top:150px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin:18px 0;box-shadow:var(--shadow)}
+.tool h2{margin:0 0 4px;font-size:23px;letter-spacing:-.4px}
+.tool .sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+.subtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.subtabs button{background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:7px 15px;cursor:pointer;font-weight:600;font-size:13.5px;color:var(--text)}
+.subtabs button.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:6px;min-width:150px;flex:1}
+.field label{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+input,select,textarea{font:inherit;color:var(--text);background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:11px 13px;width:100%;transition:.15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 25%,transparent)}
+textarea{min-height:150px;resize:vertical;line-height:1.7;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}
+.btn{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;border-radius:11px;padding:11px 20px;font-weight:700;cursor:pointer;font-size:14.5px;transition:.15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.sec{background:var(--surface-2);color:var(--text);border:1px solid var(--line)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.result{margin-top:18px;background:var(--surface-2);border:1px dashed var(--line);border-radius:14px;padding:18px}
+.result h3{margin:0 0 12px;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.big{font-size:34px;font-weight:800;color:var(--brand-ink);letter-spacing:-.5px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
+.kv div{background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:12px}
+.kv div b{display:block;font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.kv div span{font-size:20px;font-weight:800}
+.note{margin-top:12px;font-size:13.5px;color:var(--muted);background:color-mix(in srgb,var(--brand-2) 14%,var(--bg));border-left:3px solid var(--brand-2);padding:10px 14px;border-radius:8px}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+.subrow{display:flex;gap:10px;align-items:flex-end;margin-bottom:12px}
+.subrow select{min-width:240px}
+.swap{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px}
+.swap h4{margin:0 0 4px;font-size:16px}
+.swap p{margin:0;color:var(--muted);font-size:13.5px}
+.aff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+.aff-card{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;transition:.15s}
+.aff-card:hover{border-color:var(--brand);transform:translateY(-2px)}
+.aff-thumb{width:46px;height:46px;border-radius:11px;background:var(--surface-2);display:grid;place-items:center;font-size:24px;flex-shrink:0}
+.aff-card b{display:block;font-size:14.5px}
+.aff-card small{color:var(--muted);font-size:12.5px}
+.faq{padding:10px 0 30px}
+.faq h2{font-size:26px;margin:0 0 18px}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px}
+.qa h3{margin:0 0 6px;font-size:17px}
+.qa p{margin:0;color:var(--muted);font-size:14.5px}
+.ad{margin:22px 0;text-align:center}
+.ad .lab{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.aff-disc{font-size:12.5px;color:var(--muted);margin-top:10px}
+footer.site{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13.5px}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0}
+.foot-links a{color:var(--muted)}
+.disclaimer{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.7}
+@media(max-width:900px){.grid8{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:540px){.grid8{grid-template-columns:repeat(2,minmax(0,1fr))}.tool{padding:18px}.hero{padding:36px 0 20px}}
+</style>
+  
+
+<!-- Google AdSense — Auto Ads mode (PLACEHOLDER, inert).
+     To activate: (1) replace ca-pub-XXXXXXXXXXXXXX with your real publisher ID,
+     (2) remove the comment markers around the <script> line below. No other code changes needed. -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+</head>
+<body>
+<header class="site">
+  <div class="wrap bar">
+    <div class="logo"><span class="mk">🍳</span><span>Me<b>s</b>tura</span></div>
+    <div class="spacer"></div>
+    <button class="btn-ghost" id="langBtn" onclick="toggleLang()">中文</button>
+    <button class="btn-ghost" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <h1 data-i18n="hero_title">Cook smarter with <span class="ac">Mestura</span></h1>
+  <p data-i18n="hero_sub">Free, private bilingual (English / 中文) kitchen calculators. Convert cups to grams, scale recipes, convert oven temperatures, swap ingredients, estimate nutrition, and plan servings — all in your browser, no login.</p>
+  <button class="cta" onclick="showTool('unit')">🔧 <span data-i18n="hero_cta">Open Cooking Converter</span></button>
+</section>
+
+<nav class="toolbar">
+  <div class="wrap grid8" id="tb">
+    <button class="tbtn active" data-tool="unit" onclick="showTool('unit')"><span class="ic">⚖️</span><span data-i18n="nav_unit">Unit Converter</span></button>
+    <button class="tbtn" data-tool="scaler" onclick="showTool('scaler')"><span class="ic">📋</span><span data-i18n="nav_scaler">Recipe Scaler</span></button>
+    <button class="tbtn" data-tool="oven" onclick="showTool('oven')"><span class="ic">🔥</span><span data-i18n="nav_oven">Oven Temp</span></button>
+    <button class="tbtn" data-tool="sub" onclick="showTool('sub')"><span class="ic">🔁</span><span data-i18n="nav_sub">Substitute</span></button>
+    <button class="tbtn" data-tool="nutri" onclick="showTool('nutri')"><span class="ic">🥗</span><span data-i18n="nav_nutri">Nutrition</span></button>
+    <button class="tbtn" data-tool="liquid" onclick="showTool('liquid')"><span class="ic">🥤</span><span data-i18n="nav_liquid">Liquid Measure</span></button>
+    <button class="tbtn" data-tool="time" onclick="showTool('time')"><span class="ic">⏱️</span><span data-i18n="nav_time">Cook Time</span></button>
+    <button class="tbtn" data-tool="serving" onclick="showTool('serving')"><span class="ic">🍽️</span><span data-i18n="nav_serving">Serving Size</span></button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  </div>
+
+  <!-- 1. UNIT CONVERTER -->
+  <section class="tool" id="tool-unit">
+    <h2 data-i18n="unit_title">Cooking Unit Converter</h2>
+    <p class="sub" data-i18n="unit_sub">Convert volumes and weights, or turn cups into grams using per-ingredient densities for accurate baking.</p>
+    <div class="subtabs">
+      <button class="active" data-ctab="vol" onclick="setCtab(this)">📏 <span data-i18n="cat_volume">Volume</span></button>
+      <button data-ctab="wt" onclick="setCtab(this)">⚖️ <span data-i18n="cat_weight">Weight</span></button>
+      <button data-ctab="cg" onclick="setCtab(this)">🥣 <span data-i18n="cat_cupsg">Cups ↔ Grams</span></button>
+    </div>
+
+    <div id="ctab-vol">
+      <div class="row">
+        <div class="field"><label data-i18n="lbl_amount">Amount</label><input id="vol-amt" type="number" value="1" step="any" oninput="volConv()" /></div>
+        <div class="field"><label data-i18n="lbl_from">From</label><select id="vol-from" onchange="volConv()"></select></div>
+        <div class="field"><label data-i18n="lbl_to">To</label><select id="vol-to" onchange="volConv()"></select></div>
+      </div>
+      <div class="result" id="vol-out"></div>
+    </div>
+
+    <div id="ctab-wt" style="display:none">
+      <div class="row">
+        <div class="field"><label data-i18n="lbl_amount">Amount</label><input id="wt-amt" type="number" value="100" step="any" oninput="wtConv()" /></div>
+        <div class="field"><label data-i18n="lbl_from">From</label><select id="wt-from" onchange="wtConv()"></select></div>
+        <div class="field"><label data-i18n="lbl_to">To</label><select id="wt-to" onchange="wtConv()"></select></div>
+      </div>
+      <div class="result" id="wt-out"></div>
+    </div>
+
+    <div id="ctab-cg" style="display:none">
+      <div class="row">
+        <div class="field"><label data-i18n="lbl_amount">Amount</label><input id="cg-amt" type="number" value="1" step="any" oninput="cgConv()" /></div>
+        <div class="field"><label data-i18n="lbl_unit">Unit</label>
+          <select id="cg-unit" onchange="cgConv()">
+            <option value="cup">cup</option><option value="tbsp">tbsp</option><option value="tsp">tsp</option>
+            <option value="g">g</option><option value="oz">oz</option>
+          </select></div>
+        <div class="field"><label data-i18n="lbl_ingredient">Ingredient</label><select id="cg-ing" onchange="cgConv()"></select></div>
+      </div>
+      <div class="result" id="cg-out"></div>
+    </div>
+  </section>
+
+  <!-- 2. RECIPE SCALER -->
+  <section class="tool" id="tool-scaler">
+    <h2 data-i18n="scaler_title">Recipe Scaler</h2>
+    <p class="sub" data-i18n="scaler_sub">Scale an entire ingredient list up or down by servings. One ingredient per line, e.g. "2 cups flour".</p>
+    <div class="row">
+      <div class="field"><label data-i18n="lbl_orig_serv">Original servings</label><input id="rs-orig" type="number" value="4" step="any" oninput="scaleRecipe()" /></div>
+      <div class="field"><label data-i18n="lbl_target_serv">Target servings</label><input id="rs-target" type="number" value="8" step="any" oninput="scaleRecipe()" /></div>
+    </div>
+    <div class="row" style="margin-top:14px;align-items:stretch">
+      <div class="field" style="flex:1">
+        <label data-i18n="lbl_ingredients">Ingredients (one per line)</label>
+        <textarea id="rs-input" oninput="scaleRecipe()">2 cups all-purpose flour
+1 cup granulated sugar
+3/4 cup butter
+2 eggs
+1 tsp baking soda
+1/2 cup milk</textarea>
+      </div>
+      <div class="field" style="flex:1">
+        <label data-i18n="lbl_output">Scaled recipe</label>
+        <textarea id="rs-output" readonly></textarea>
+      </div>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="scaleRecipe()" data-i18n="btn_scale">Scale recipe</button>
+      <button class="btn sec" onclick="copyText('rs-output')" data-i18n="btn_copy">Copy</button>
+    </div>
+    <p class="note" data-i18n="scaler_hint">Tip: keep units in words (cups, tbsp, tsp, g, oz, cloves…). Lines without a leading number are left unchanged.</p>
+  </section>
+
+  <!-- 3. OVEN TEMP -->
+  <section class="tool" id="tool-oven">
+    <h2 data-i18n="oven_title">Oven Temperature Converter</h2>
+    <p class="sub" data-i18n="oven_sub">Convert between Fahrenheit and Celsius, get the UK Gas Mark, and the convection (fan) equivalent.</p>
+    <div class="row">
+      <div class="field"><label data-i18n="lbl_temp">Temperature</label><input id="ov-temp" type="number" value="350" step="any" oninput="ovenConv()" /></div>
+      <div class="field"><label data-i18n="lbl_scale">Scale</label>
+        <select id="ov-scale" onchange="ovenConv()">
+          <option value="F">°F (Fahrenheit)</option><option value="C">°C (Celsius)</option>
+        </select></div>
+    </div>
+    <div class="btns">
+      <button class="btn sec" onclick="presetOven(350,'F')">350°F</button>
+      <button class="btn sec" onclick="presetOven(375,'F')">375°F</button>
+      <button class="btn sec" onclick="presetOven(180,'C')">180°C</button>
+      <button class="btn sec" onclick="presetOven(200,'C')">200°C</button>
+    </div>
+    <div class="result" id="ov-out"></div>
+  </section>
+
+  <!-- 4. SUBSTITUTION -->
+  <section class="tool" id="tool-sub">
+    <h2 data-i18n="sub_title">Ingredient Substitution Finder</h2>
+    <p class="sub" data-i18n="sub_sub">Out of an ingredient? Pick it to see common swaps and how to use them.</p>
+    <div class="subrow">
+      <select id="sub-sel" onchange="renderSub()" style="min-width:260px"></select>
+    </div>
+    <div id="sub-out"></div>
+  </section>
+
+  <!-- 5. NUTRITION -->
+  <section class="tool" id="tool-nutri">
+    <h2 data-i18n="nutri_title">Nutrition Estimator</h2>
+    <p class="sub" data-i18n="nutri_sub">Add ingredients with amounts to estimate total calories, protein, fat, and carbs. Values are per-100g estimates for planning.</p>
+    <div id="nutri-rows"></div>
+    <div class="btns">
+      <button class="btn sec" onclick="addNutriRow()" data-i18n="btn_add">+ Add ingredient</button>
+    </div>
+    <div class="result" id="nutri-out"></div>
+    <p class="note" data-i18n="nutri_note">Estimates use commonly published per-100g values for home planning. Not a substitute for labels or professional dietary advice.</p>
+  </section>
+
+  <!-- 6. LIQUID MEASURE -->
+  <section class="tool" id="tool-liquid">
+    <h2 data-i18n="liquid_title">Liquid & Bar Measure Converter</h2>
+    <p class="sub" data-i18n="liquid_sub">Convert between ml, fluid ounces, shots, cups, and liters for drinks and cooking liquids.</p>
+    <div class="row">
+      <div class="field"><label data-i18n="lbl_liq_amount">Amount</label><input id="liq-amt" type="number" value="1" step="any" oninput="liqConv()" /></div>
+      <div class="field"><label data-i18n="lbl_liq_from">From</label><select id="liq-from" onchange="liqConv()"></select></div>
+      <div class="field"><label data-i18n="lbl_liq_to">To</label><select id="liq-to" onchange="liqConv()"></select></div>
+    </div>
+    <div class="result" id="liq-out"></div>
+  </section>
+
+  <!-- 7. COOK TIME -->
+  <section class="tool" id="tool-time">
+    <h2 data-i18n="time_title">Cooking Time Calculator</h2>
+    <p class="sub" data-i18n="time_sub">Estimate roast times by weight, or rescale a known time for a different weight. Always verify with a meat thermometer.</p>
+    <div class="subtabs">
+      <button class="active" data-ttab="a" onclick="setTtab(this)">🍖 <span data-i18n="time_modeA">By protein & weight</span></button>
+      <button data-ttab="b" onclick="setTtab(this)">🔄 <span data-i18n="time_modeB">Rescale a time</span></button>
+    </div>
+    <div id="ttab-a">
+      <div class="row">
+        <div class="field"><label data-i18n="lbl_protein">Protein</label>
+          <select id="time-pro" onchange="timeByWeight()">
+            <option value="turkey" data-i18n="pro_turkey">Turkey (whole)</option>
+            <option value="chicken" data-i18n="pro_chicken">Chicken (whole)</option>
+            <option value="beef" data-i18n="pro_beef">Beef roast</option>
+            <option value="pork" data-i18n="pro_pork">Pork roast</option>
+            <option value="lamb" data-i18n="pro_lamb">Lamb leg</option>
+          </select></div>
+        <div class="field"><label data-i18n="lbl_weight_kg">Weight (kg)</label><input id="time-w" type="number" value="2" step="any" oninput="timeByWeight()" /></div>
+      </div>
+      <div class="result" id="time-a-out"></div>
+    </div>
+    <div id="ttab-b" style="display:none">
+      <div class="row">
+        <div class="field"><label data-i18n="lbl_orig_weight">Original weight (kg)</label><input id="ts-ow" type="number" value="1.5" step="any" oninput="timeScale()" /></div>
+        <div class="field"><label data-i18n="lbl_orig_time">Original time (min)</label><input id="ts-ot" type="number" value="60" step="any" oninput="timeScale()" /></div>
+        <div class="field"><label data-i18n="lbl_new_weight">New weight (kg)</label><input id="ts-nw" type="number" value="2.2" step="any" oninput="timeScale()" /></div>
+      </div>
+      <div class="result" id="time-b-out"></div>
+    </div>
+  </section>
+
+  <!-- 8. SERVING SIZE -->
+  <section class="tool" id="tool-serving">
+    <h2 data-i18n="serving_title">Serving Size & Shopping Calculator</h2>
+    <p class="sub" data-i18n="serving_sub">Enter the number of guests and adjust per-person amounts to see how much to buy.</p>
+    <div class="row">
+      <div class="field"><label data-i18n="lbl_guests">Guests</label><input id="sv-guests" type="number" value="4" step="any" oninput="servingCalc()" /></div>
+    </div>
+    <table id="sv-table">
+      <thead><tr><th data-i18n="sv_item">Item</th><th data-i18n="sv_per">Per person (g)</th><th data-i18n="sv_total">Total needed (g)</th></tr></thead>
+      <tbody id="sv-body"></tbody>
+    </table>
+    <div class="result" id="sv-total" style="display:none"></div>
+  </section>
+
+    </div>
+
+  <!-- AFFILIATE -->
+  <section class="tool" id="tools-aff">
+    <h2 data-i18n="aff_title">Recommended Kitchen Tools</h2>
+    <div class="aff-grid">
+      <a class="aff-card" href="https://www.amazon.com/s?k=digital+kitchen+scale&tag=mestura-20" target="_blank" rel="sponsored nofollow noopener">
+        <div class="aff-thumb">⚖️</div><div><b>Digital Kitchen Scale</b><small data-i18n="aff_scale">For precise cups-to-grams baking</small></div></a>
+      <a class="aff-card" href="https://www.amazon.com/s?k=measuring+cups+set&tag=mestura-20" target="_blank" rel="sponsored nofollow noopener">
+        <div class="aff-thumb">🥣</div><div><b>Measuring Cups & Spoons</b><small data-i18n="aff_cups">Accurate volume measuring</small></div></a>
+      <a class="aff-card" href="https://www.amazon.com/s?k=instant+read+meat+thermometer&tag=mestura-20" target="_blank" rel="sponsored nofollow noopener">
+        <div class="aff-thumb">🌡️</div><div><b>Meat Thermometer</b><small data-i18n="aff_therm">Hit safe internal temperatures</small></div></a>
+      <a class="aff-card" href="https://www.amazon.com/s?k=cooking+conversion+chart+magnet&tag=mestura-20" target="_blank" rel="sponsored nofollow noopener">
+        <div class="aff-thumb">📐</div><div><b>Conversion Chart Magnet</b><small data-i18n="aff_magnet">Quick fridge reference</small></div></a>
+    </div>
+    <p class="aff-disc" data-i18n="aff_disclosure">As an Amazon Associate we may earn from qualifying purchases. This does not affect our independent recommendations.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq wrap" style="max-width:var(--maxw)">
+    <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
+    <div id="faq-list"></div>
+  </section>
+
+  </div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div style="font-weight:800;font-size:18px">Me<b style="color:var(--brand)">s</b>tura</div>
+    <p data-i18n="footer_tagline">Free, private bilingual kitchen calculators. Built for home cooks who switch between cups and grams.</p>
+    <div class="foot-links">
+      <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      <a href="#tool-unit">Cooking Converter</a><a href="#tool-scaler">Recipe Scaler</a>
+      <a href="#tool-oven">Oven Temp</a><a href="#tool-sub">Substitutions</a>
+      <a href="#tool-nutri">Nutrition</a><a href="#tool-liquid">Liquid Measure</a>
+      <a href="#tool-time">Cook Time</a><a href="#tool-serving">Serving Size</a>
+    </div>
+    <p class="disclaimer" data-i18n="disclaimer">Mestura provides educational estimates for home cooking. Conversions and nutrition values are approximate and may vary by brand and method. Always follow food-safety guidance and use a thermometer for meats. Not medical or professional advice.</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------- i18n ---------------- */
+const D = {
+  en:{
+    hero_title:'Cook smarter with <span class="ac">Mestura</span>',
+    hero_sub:'Free, private bilingual (English / 中文) kitchen calculators. Convert cups to grams, scale recipes, convert oven temperatures, swap ingredients, estimate nutrition, and plan servings — all in your browser, no login.',
+    hero_cta:'Open Cooking Converter',
+    nav_unit:'Unit Converter', nav_scaler:'Recipe Scaler', nav_oven:'Oven Temp', nav_sub:'Substitute',
+    nav_nutri:'Nutrition', nav_liquid:'Liquid Measure', nav_time:'Cook Time', nav_serving:'Serving Size',
+    unit_title:'Cooking Unit Converter', unit_sub:'Convert volumes and weights, or turn cups into grams using per-ingredient densities for accurate baking.',
+    cat_volume:'Volume', cat_weight:'Weight', cat_cupsg:'Cups ↔ Grams',
+    lbl_amount:'Amount', lbl_from:'From', lbl_to:'To', lbl_ingredient:'Ingredient', lbl_unit:'Unit', lbl_result:'Result',
+    scaler_title:'Recipe Scaler', scaler_sub:'Scale an entire ingredient list up or down by servings. One ingredient per line, e.g. "2 cups flour".',
+    lbl_orig_serv:'Original servings', lbl_target_serv:'Target servings', lbl_ingredients:'Ingredients (one per line)', lbl_output:'Scaled recipe',
+    btn_scale:'Scale recipe', btn_copy:'Copy', scaler_hint:'Tip: keep units in words (cups, tbsp, tsp, g, oz, cloves…). Lines without a leading number are left unchanged.',
+    oven_title:'Oven Temperature Converter', oven_sub:'Convert between Fahrenheit and Celsius, get the UK Gas Mark, and the convection (fan) equivalent.',
+    lbl_temp:'Temperature', lbl_scale:'Scale', lbl_gas:'Gas Mark', lbl_fan_note:'Convection (fan) tip: lower the temperature by about 20°C (25°F) and shorten the time by roughly 20%.',
+    sub_title:'Ingredient Substitution Finder', sub_sub:'Out of an ingredient? Pick it to see common swaps and how to use them.',
+    lbl_select_ingredient:'Select an ingredient', lbl_substitutes:'Common substitutes',
+    nutri_title:'Nutrition Estimator', nutri_sub:'Add ingredients with amounts to estimate total calories, protein, fat, and carbs. Values are per-100g estimates for planning.',
+    btn_add:'+ Add ingredient', lbl_kcal:'Calories', lbl_protein:'Protein', lbl_fat:'Fat', lbl_carbs:'Carbs', lbl_total:'Total', lbl_per_serving:'Per serving', lbl_servings:'Servings',
+    unit_g:'grams (g)', unit_cup:'cups', unit_ml:'ml', nutri_note:'Estimates use commonly published per-100g values for home planning. Not a substitute for labels or professional dietary advice.',
+    liquid_title:'Liquid & Bar Measure Converter', liquid_sub:'Convert between ml, fluid ounces, shots, cups, and liters for drinks and cooking liquids.',
+    lbl_liq_amount:'Amount', lbl_liq_from:'From', lbl_liq_to:'To',
+    time_title:'Cooking Time Calculator', time_sub:'Estimate roast times by weight, or rescale a known time for a different weight. Always verify with a meat thermometer.',
+    time_modeA:'By protein & weight', time_modeB:'Rescale a time', lbl_protein:'Protein', lbl_weight_kg:'Weight (kg)',
+    lbl_orig_weight:'Original weight (kg)', lbl_orig_time:'Original time (min)', lbl_new_weight:'New weight (kg)', lbl_new_time:'New time (min)',
+    pro_turkey:'Turkey (whole)', pro_chicken:'Chicken (whole)', pro_beef:'Beef roast', pro_pork:'Pork roast', pro_lamb:'Lamb leg',
+    time_fan_note:'Convection/fan: use about 20°C lower and roughly 20% less time.', time_formula:'New time ≈ original × (new weight ÷ original weight)^(2/3).',
+    serving_title:'Serving Size & Shopping Calculator', serving_sub:'Enter the number of guests and adjust per-person amounts to see how much to buy.',
+    lbl_guests:'Guests', sv_item:'Item', sv_per:'Per person (g)', sv_total:'Total needed (g)',
+    sv_rice:'Rice (uncooked)', sv_pasta:'Pasta', sv_meat:'Meat / fish', sv_potato:'Potatoes', sv_veg:'Vegetables', sv_bread:'Bread',
+    aff_title:'Recommended Kitchen Tools', aff_scale:'For precise cups-to-grams baking', aff_cups:'Accurate volume measuring',
+    aff_therm:'Hit safe internal temperatures', aff_magnet:'Quick fridge reference', aff_disclosure:'As an Amazon Associate we may earn from qualifying purchases. This does not affect our independent recommendations.',
+    faq_title:'Frequently Asked Questions',
+    footer_tagline:'Free, private bilingual kitchen calculators. Built for home cooks who switch between cups and grams.',
+    footer_privacy:'Privacy Policy',
+    disclaimer:'Mestura provides educational estimates for home cooking. Conversions and nutrition values are approximate and may vary by brand and method. Always follow food-safety guidance and use a thermometer for meats. Not medical or professional advice.',
+    lang_btn:'中文', theme_light:'🌙', theme_dark:'☀️'
+  },
+  zh:{
+    hero_title:'用 <span class="ac">Mestura</span> 更聪明地做饭',
+    hero_sub:'免费、私密的双语（英文 / 中文）厨房计算器。杯转克、缩放食谱、转换烤箱温度、替换食材、估算营养、规划分量——全部在你的浏览器里，无需登录。',
+    hero_cta:'打开烹饪换算器',
+    nav_unit:'单位换算', nav_scaler:'食谱缩放', nav_oven:'烤箱温度', nav_sub:'食材替换',
+    nav_nutri:'营养估算', nav_liquid:'液体换算', nav_time:'烹饪时间', nav_serving:'分量规划',
+    unit_title:'烹饪单位换算器', unit_sub:'换算容积与重量，或按食材密度把杯转换为克，烘焙更精准。',
+    cat_volume:'容积', cat_weight:'重量', cat_cupsg:'杯 ↔ 克',
+    lbl_amount:'数量', lbl_from:'从', lbl_to:'到', lbl_ingredient:'食材', lbl_unit:'单位', lbl_result:'结果',
+    scaler_title:'食谱分量缩放', scaler_sub:'按人数把整份食材清单放大或缩小。每行一种食材，例如“2 杯 面粉”。',
+    lbl_orig_serv:'原份数', lbl_target_serv:'目标份数', lbl_ingredients:'食材（每行一种）', lbl_output:'缩放后食谱',
+    btn_scale:'缩放食谱', btn_copy:'复制', scaler_hint:'提示：单位用文字（杯、汤匙、茶匙、克、盎司、瓣……）。没有开头数字的行保持不变。',
+    oven_title:'烤箱温度转换器', oven_sub:'在摄氏度与华氏度之间转换，获取英国 Gas Mark，以及对流（风炉）等效温度。',
+    lbl_temp:'温度', lbl_scale:'温标', lbl_gas:'Gas Mark', lbl_fan_note:'对流（风炉）提示：温度降低约 20°C（25°F），时间缩短约 20%。',
+    sub_title:'食材替换查找器', sub_sub:'缺某种食材？选择它查看常见替代品及用法。',
+    lbl_select_ingredient:'选择食材', lbl_substitutes:'常见替代品',
+    nutri_title:'营养估算器', nutri_sub:'添加食材及用量，估算总热量、蛋白质、脂肪和碳水。数值为每 100 克的规划用估算值。',
+    btn_add:'+ 添加食材', lbl_kcal:'热量', lbl_protein:'蛋白质', lbl_fat:'脂肪', lbl_carbs:'碳水', lbl_total:'总计', lbl_per_serving:'每份', lbl_servings:'份数',
+    unit_g:'克 (g)', unit_cup:'杯', unit_ml:'毫升', nutri_note:'估算采用常见的每 100 克公开数值，仅供家庭规划。不能替代食品标签或专业饮食建议。',
+    liquid_title:'液体与酒量换算器', liquid_sub:'在毫升、液量盎司、shot、杯和升之间换算，适用于饮品与烹饪液体。',
+    lbl_liq_amount:'数量', lbl_liq_from:'从', lbl_liq_to:'到',
+    time_title:'烹饪时间计算器', time_sub:'按重量估算烘烤时间，或为不同重量重算已知时间。务必用肉类温度计确认。',
+    time_modeA:'按食材与重量', time_modeB:'重算时间', lbl_protein:'食材', lbl_weight_kg:'重量（公斤）',
+    lbl_orig_weight:'原重量（公斤）', lbl_orig_time:'原时间（分钟）', lbl_new_weight:'新重量（公斤）', lbl_new_time:'新时间（分钟）',
+    pro_turkey:'火鸡（整只）', pro_chicken:'鸡肉（整只）', pro_beef:'烤牛肉', pro_pork:'烤猪肉', pro_lamb:'羊腿',
+    time_fan_note:'对流/风炉：温度降低约 20°C，时间缩短约 20%。', time_formula:'新时间 ≈ 原时间 ×（新重量 ÷ 原重量）^(2/3)。',
+    serving_title:'分量与采购计算器', serving_sub:'输入就餐人数并调整每人用量，查看需要购买多少。',
+    lbl_guests:'就餐人数', sv_item:'食材', sv_per:'每人（克）', sv_total:'共需（克）',
+    sv_rice:'米饭（生米）', sv_pasta:'意面', sv_meat:'肉 / 鱼', sv_potato:'土豆', sv_veg:'蔬菜', sv_bread:'面包',
+    aff_title:'推荐厨房工具', aff_scale:'精准杯转克烘焙', aff_cups:'精准容积测量',
+    aff_therm:'达到安全中心温度', aff_magnet:'冰箱快速参考', aff_disclosure:'作为亚马逊联盟成员，我们可能从合格购买中获得收益，这不影响我们的独立推荐。',
+    faq_title:'常见问题',
+    footer_tagline:'免费、私密的双语厨房计算器。为在杯与克之间切换的家庭厨师而建。',
+    footer_privacy:'隐私政策',
+    disclaimer:'Mestura 提供家庭烹饪的教育性估算。换算与营养数值为近似值，可能因品牌和方法而异。请始终遵循食品安全指引，并用温度计确认肉类熟度。非医疗或专业建议。',
+    lang_btn:'EN', theme_light:'🌙', theme_dark:'☀️'
+  }
+};
+/* bilingual data with EN+ZH labels */
+const ING = {
+  all_purpose_flour:{en:'All-purpose flour',zh:'中筋面粉',d:125},
+  bread_flour:{en:'Bread flour',zh:'高筋面粉',d:130},
+  cake_flour:{en:'Cake flour',zh:'低筋面粉',d:114},
+  whole_wheat_flour:{en:'Whole wheat flour',zh:'全麦面粉',d:120},
+  granulated_sugar:{en:'Granulated sugar',zh:'白砂糖',d:200},
+  brown_sugar:{en:'Brown sugar (packed)',zh:'黄糖（压实）',d:220},
+  powdered_sugar:{en:'Powdered sugar',zh:'糖粉',d:120},
+  butter:{en:'Butter',zh:'黄油',d:227},
+  water:{en:'Water',zh:'水',d:236.588},
+  milk:{en:'Milk',zh:'牛奶',d:244},
+  honey:{en:'Honey',zh:'蜂蜜',d:340},
+  maple_syrup:{en:'Maple syrup',zh:'枫糖浆',d:322},
+  vegetable_oil:{en:'Vegetable oil',zh:'植物油',d:218},
+  cocoa_powder:{en:'Cocoa powder',zh:'可可粉',d:85},
+  rolled_oats:{en:'Rolled oats',zh:'燕麦片',d:90},
+  white_rice_uncooked:{en:'White rice (uncooked)',zh:'白米（生）',d:185},
+  cornstarch:{en:'Cornstarch',zh:'玉米淀粉',d:120},
+  table_salt:{en:'Table salt',zh:'食盐',d:273},
+  baking_soda:{en:'Baking soda',zh:'小苏打',d:220},
+  sour_cream:{en:'Sour cream',zh:'酸奶油',d:230},
+  yogurt:{en:'Yogurt',zh:'酸奶',d:245},
+  peanut_butter:{en:'Peanut butter',zh:'花生酱',d:258},
+  chocolate_chips:{en:'Chocolate chips',zh:'巧克力豆',d:170},
+  chopped_nuts:{en:'Chopped nuts',zh:'切碎坚果',d:120},
+  shredded_cheese:{en:'Shredded cheese',zh:'芝士碎',d:113}
+};
+const NUT = {
+  all_purpose_flour:{en:'All-purpose flour',zh:'中筋面粉',k:364,p:10.3,f:1.0,c:76.3,d:125},
+  white_rice_cooked:{en:'White rice (cooked)',zh:'白米饭',k:130,p:2.7,f:0.3,c:28.2,d:158},
+  white_rice_uncooked:{en:'White rice (uncooked)',zh:'白米（生）',k:360,p:6.6,f:0.5,c:79.2,d:185},
+  chicken_breast:{en:'Chicken breast (cooked)',zh:'鸡胸肉（熟）',k:165,p:31,f:3.6,c:0,d:0},
+  egg:{en:'Egg (whole)',zh:'鸡蛋（全蛋）',k:143,p:13,f:9.5,c:0.7,d:0},
+  butter:{en:'Butter',zh:'黄油',k:717,p:0.9,f:81,f0:81,c:0.1,d:227},
+  milk_whole:{en:'Milk (whole)',zh:'全脂牛奶',k:61,p:3.2,f:3.3,c:4.8,d:244},
+  granulated_sugar:{en:'Granulated sugar',zh:'白砂糖',k:387,p:0,f:0,c:100,d:200},
+  olive_oil:{en:'Olive oil',zh:'橄榄油',k:884,p:0,f:100,c:0,d:218},
+  potato:{en:'Potato',zh:'土豆',k:77,p:2,f:0.1,c:17,d:0},
+  broccoli:{en:'Broccoli',zh:'西兰花',k:34,p:2.8,f:0.4,c:7,d:0},
+  apple:{en:'Apple',zh:'苹果',k:52,p:0.3,f:0.2,c:14,d:0},
+  banana:{en:'Banana',zh:'香蕉',k:89,p:1.1,f:0.3,c:23,d:0},
+  beef_ground:{en:'Ground beef (cooked)',zh:'牛肉末（熟）',k:250,p:26,f:15,c:0,d:0},
+  salmon:{en:'Salmon',zh:'三文鱼',k:208,p:20,f:13,c:0,d:0},
+  pasta_cooked:{en:'Pasta (cooked)',zh:'意面（熟）',k:158,p:5.8,f:0.9,c:31,d:0},
+  cheddar:{en:'Cheddar cheese',zh:'切达芝士',k:403,p:25,f:33,c:1.3,d:113},
+  almonds:{en:'Almonds',zh:'杏仁',k:579,p:21,f:50,c:22,d:0},
+  avocado:{en:'Avocado',zh:'牛油果',k:160,p:2,f:15,c:9,d:0},
+  tomato:{en:'Tomato',zh:'番茄',k:18,p:0.9,f:0.2,c:3.9,d:0},
+  onion:{en:'Onion',zh:'洋葱',k:40,p:1.1,f:0.1,c:9.3,d:0},
+  carrot:{en:'Carrot',zh:'胡萝卜',k:41,p:0.9,f:0.2,c:10,d:0},
+  bread_white:{en:'White bread',zh:'白面包',k:265,p:9,f:3.2,c:49,d:0},
+  honey:{en:'Honey',zh:'蜂蜜',k:304,p:0.3,f:0,c:82,d:340},
+  oats:{en:'Rolled oats',zh:'燕麦片',k:389,p:17,f:7,c:66,d:90}
+};
+const SUB = {
+  buttermilk:{en:'Buttermilk',zh:'酪乳',swaps:[
+    {en:'1 cup milk + 1 tbsp lemon juice or white vinegar; let sit 5 min',zh:'1杯牛奶 + 1汤匙柠檬汁或白醋，静置5分钟'},
+    {en:'1 cup plain yogurt thinned with a little milk',zh:'1杯原味酸奶加少许牛奶稀释'}
+  ]},
+  egg:{en:'Egg',zh:'鸡蛋',swaps:[
+    {en:'1 tbsp ground flaxseed + 3 tbsp water (vegan binder)',zh:'1汤匙亚麻籽粉 + 3汤匙水（素食粘合剂）'},
+    {en:'1/4 cup unsweetened applesauce (moisture)',zh:'1/4杯无糖苹果泥（保湿）'},
+    {en:'1/2 medium mashed banana (moisture + sweetness)',zh:'1/2个中等香蕉泥（保湿增甜）'}
+  ]},
+  butter:{en:'Butter',zh:'黄油',swaps:[
+    {en:'1 cup margarine (1:1)',zh:'1杯人造黄油（1:1）'},
+    {en:'1/2 cup oil + 1/2 cup milk (for baking)',zh:'1/2杯油 + 1/2杯牛奶（烘焙用）'},
+    {en:'1 cup shortening (less flavor)',zh:'1杯起酥油（风味较淡）'}
+  ]},
+  heavy_cream:{en:'Heavy cream',zh:'淡奶油',swaps:[
+    {en:'3/4 cup milk + 1/3 cup melted butter',zh:'3/4杯牛奶 + 1/3杯融化黄油'},
+    {en:'1 cup evaporated milk (thinner)',zh:'1杯淡奶（较稀）'}
+  ]},
+  sour_cream:{en:'Sour cream',zh:'酸奶油',swaps:[
+    {en:'1 cup plain yogurt (1:1)',zh:'1杯原味酸奶（1:1）'},
+    {en:'1 cup blended cottage cheese + 1 tbsp lemon juice',zh:'1杯搅打干酪 + 1汤匙柠檬汁'}
+  ]},
+  milk:{en:'Milk',zh:'牛奶',swaps:[
+    {en:'1 cup water + 1.5 tbsp powdered milk',zh:'1杯水 + 1.5汤匙奶粉'},
+    {en:'1 cup any plant milk (almond, soy, oat)',zh:'1杯任意植物奶（杏仁、大豆、燕麦）'}
+  ]},
+  sugar:{en:'Granulated sugar',zh:'白砂糖',swaps:[
+    {en:'1 cup honey (use 3/4 cup + reduce liquid by 1/4 cup)',zh:'1杯蜂蜜（用3/4杯并减少1/4杯液体）'},
+    {en:'1 cup maple syrup (use 3/4 cup + reduce liquid)',zh:'1杯枫糖浆（用3/4杯并减少液体）'}
+  ]},
+  baking_powder:{en:'Baking powder',zh:'泡打粉',swaps:[
+    {en:'1/4 tsp baking soda + 1/2 tsp cream of tartar',zh:'1/4茶匙小苏打 + 1/2茶匙塔塔粉'}
+  ]},
+  cocoa:{en:'Unsweetened cocoa',zh:'无糖可可粉',swaps:[
+    {en:'3 tbsp cocoa + 1 tbsp butter = 1 oz chocolate',zh:'3汤匙可可粉 + 1汤匙黄油 = 1盎司巧克力'}
+  ]},
+  tomato_sauce:{en:'Tomato sauce',zh:'番茄酱',swaps:[
+    {en:'1 cup tomato paste + 1 cup water',zh:'1杯番茄膏 + 1杯水'},
+    {en:'1 cup crushed tomatoes',zh:'1杯碎番茄'}
+  ]},
+  brown_sugar:{en:'Brown sugar',zh:'黄糖',swaps:[
+    {en:'1 cup white sugar + 1 tbsp molasses',zh:'1杯白砂糖 + 1汤匙糖蜜'}
+  ]},
+  vanilla:{en:'Vanilla extract',zh:'香草精',swaps:[
+    {en:'Same amount almond extract (different flavor)',zh:'等量杏仁精（风味不同）'},
+    {en:'1/2 amount vanilla powder',zh:'1/2量香草粉'}
+  ]},
+  self_rising_flour:{en:'Self-rising flour',zh:'自发粉',swaps:[
+    {en:'1 cup AP flour + 1.5 tsp baking powder + 1/4 tsp salt',zh:'1杯中筋面粉 + 1.5茶匙泡打粉 + 1/4茶匙盐'}
+  ]},
+  cornstarch:{en:'Cornstarch (thickener)',zh:'玉米淀粉（增稠）',swaps:[
+    {en:'2 tbsp flour per 1 tbsp cornstarch',zh:'每1汤匙玉米淀粉用2汤匙面粉'}
+  ]}
+};
+const FAQ = [
+  {q_en:'How many grams are in a cup of flour?', q_zh:'一杯面粉是多少克？',
+   a_en:'All-purpose flour is about 125 g per US cup when spooned and leveled. Different ingredients have different densities, so always convert by ingredient. Mestura\'s unit converter uses per-ingredient weights for accuracy.',
+   a_zh:'中筋面粉每美制杯约 125 克（舀入刮平）。不同食材密度不同，因此务必按食材换算。Mestura 的单位换算器使用每种食材的专用重量以确保准确。'},
+  {q_en:'How do I convert Fahrenheit to Celsius for my oven?', q_zh:'烤箱华氏度如何换算成摄氏度？',
+   a_en:'Use C = (F - 32) x 5/9. For example, 350°F is about 177°C (Gas Mark 4). Mestura\'s oven converter does this instantly and also gives the convection (fan) equivalent.',
+   a_zh:'公式：°C = (°F − 32) × 5/9。例如 350°F 约等于 177°C（Gas Mark 4）。Mestura 的烤箱转换器可即时完成，并给出对流（风炉）等效温度。'},
+  {q_en:'How do I scale a recipe for more or fewer servings?', q_zh:'如何按比例缩放食谱的份数？',
+   a_en:'Divide your target servings by the original servings to get a factor, then multiply every quantity by that factor. Mestura\'s Recipe Scaler scales each line automatically.',
+   a_zh:'用目标份数除以原份数得到倍数，再把每个用量乘以该倍数。Mestura 的食谱缩放器会逐行自动缩放。'},
+  {q_en:'Are the conversions and nutrition values exact?', q_zh:'换算和营养数值是精确的吗？',
+   a_en:'They are reliable, commonly-used approximations for home cooking. Weights vary by measuring method and brand; for baking precision use a kitchen scale. Nutrition figures are per-100g estimates for planning, not medical advice.',
+   a_zh:'它们是家庭烹饪中可靠、常用的近似值。重量会因测量方法和品牌而异；烘焙要精准请使用厨房秤。营养数值为每 100 克的规划用估算，非医疗建议。'},
+  {q_en:'Is Mestura free and private?', q_zh:'Mestura 免费且私密吗？',
+   a_en:'Yes. Everything runs in your browser. We do not upload your inputs, and there is no login or tracking cookies for the tools.',
+   a_zh:'是的。一切都在你的浏览器中运行。我们不会上传你的输入，工具也没有登录或跟踪 Cookie。'},
+  {q_en:'Does Mestura work on mobile?', q_zh:'Mestura 在手机上能用吗？',
+   a_en:'Yes. The site is responsive and works on phones, tablets, and desktops, online and offline once loaded.',
+   a_zh:'可以。网站为响应式设计，在手机、平板和桌面均可使用，加载后在线离线都能用。'}
+];
+
+/* ---------------- constants ---------------- */
+const VOL={tsp:4.92892,tbsp:14.7868,floz:29.5735,cup:236.588,pint:473.176,quart:946.353,gallon:3785.41,ml:1,liter:1000};
+const WT={g:1,kg:1000,oz:28.3495,lb:453.592};
+const LIQ={ml:1,floz:29.5735,shot:44.3603,cup:236.588,liter:1000};
+const GAS=[[107,'1/4'],[121,'1/2'],[135,'1'],[149,'2'],[163,'3'],[177,'4'],[191,'5'],[204,'6'],[218,'7'],[232,'8'],[246,'9']];
+const RATE={turkey:45,chicken:55,beef:40,pork:45,lamb:50}; // min per kg
+const PER={rice:75,pasta:100,meat:150,potato:200,veg:100,bread:50};
+
+/* ---------------- helpers ---------------- */
+let lang = localStorage.getItem('mestura-lang') || (navigator.language||'en').slice(0,2);
+if(lang!=='en'&&lang!=='zh') lang='en';
+function t(k){return (D[lang]&&D[lang][k]!=null)?D[lang][k]:(D.en[k]!=null?D.en[k]:k);}
+function ingName(o){return lang==='zh'?o.zh:o.en;}
+function $(id){return document.getElementById(id);}
+function r2(n){return Math.round(n*1000)/1000;}
+function r1(n){return Math.round(n*10)/10;}
+function fmtBig(n){return (Math.round(n*100)/100).toLocaleString(undefined,{maximumFractionDigits:2});}
+function copyText(id){const el=$(id);if(!el)return;el.select();try{document.execCommand('copy');}catch(e){} }
+
+/* ---------------- i18n apply ---------------- */
+function applyI18n(){
+  document.documentElement.lang = (lang==='zh')?'zh':'en';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(k && D[lang] && D[lang][k]!=null) el.innerHTML=D[lang][k];
+  });
+  $('langBtn').textContent = t('lang_btn');
+  $('themeBtn').textContent = (document.documentElement.classList.contains('dark'))?t('theme_dark'):t('theme_light');
+  // re-render dynamic content
+  renderSelects();
+  renderFaq();
+  renderSub();
+  refreshAll();
+}
+function toggleLang(){
+  lang = (lang==='en')?'zh':'en';
+  localStorage.setItem('mestura-lang',lang);
+  // sync URL param for hreflang crawlers
+  const url=new URL(location.href); url.searchParams.set('lang',lang); history.replaceState(null,'',url);
+  applyI18n();
+}
+function toggleTheme(){
+  const d=document.documentElement.classList.toggle('dark');
+  localStorage.setItem('mestura-theme',d?'dark':'light');
+  $('themeBtn').textContent = d?t('theme_dark'):t('theme_light');
+}
+
+/* ---------------- selects ---------------- */
+function optgroupFill(){
+  // volume
+  const vf=$('vol-from'), vt=$('vol-to');
+  const volOpts=[['tsp','tsp'],['tbsp','tbsp'],['floz','fl oz'],['cup','cup'],['pint','pint'],['quart','quart'],['gallon','gallon'],['ml','ml'],['liter','L']];
+  vf.innerHTML=vt.innerHTML=volOpts.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('');
+  vf.value='cup'; vt.value='ml';
+  // weight
+  const wf=$('wt-from'), wt=$('wt-to');
+  const wtOpts=[['g','g'],['kg','kg'],['oz','oz'],['lb','lb']];
+  wf.innerHTML=wt.innerHTML=wtOpts.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('');
+  wf.value='g'; wt.value='oz';
+  // liquid
+  const lf=$('liq-from'), lt=$('liq-to');
+  const lqOpts=[['ml','ml'],['floz','fl oz'],['shot','shot (1.5 fl oz)'],['cup','cup'],['liter','L']];
+  lf.innerHTML=lt.innerHTML=lqOpts.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('');
+  lf.value='cup'; lt.value='ml';
+  // ingredient (cups<->grams)
+  const cg=$('cg-ing');
+  cg.innerHTML=Object.keys(ING).map(k=>`<option value="${k}">${ingName(ING[k])}</option>`).join('');
+}
+function renderSelects(){ optgroupFill(); refreshNutriSelects(); }
+function refreshNutriSelects(){
+  document.querySelectorAll('#nutri-rows .nr-ing').forEach(sel=>{
+    const v=sel.value; renderNutriOptions(sel); if(v) sel.value=v;
+  });
+}
+
+/* ---------------- UNIT: volume ---------------- */
+function volConv(){
+  const a=parseFloat($('vol-amt').value)||0, f=$('vol-from').value, to=$('vol-to').value;
+  const res=a*VOL[f]/VOL[to];
+  $('vol-out').innerHTML=`<h3 data-i18n="lbl_result">${t('lbl_result')}</h3>
+    <div class="big">${fmtBig(res)} <small style="font-size:16px;color:var(--muted)">${to==='liter'?'L':to}</small></div>`;
+}
+/* ---------------- UNIT: weight ---------------- */
+function wtConv(){
+  const a=parseFloat($('wt-amt').value)||0, f=$('wt-from').value, to=$('wt-to').value;
+  const res=a*WT[f]/WT[to];
+  $('wt-out').innerHTML=`<h3 data-i18n="lbl_result">${t('lbl_result')}</h3>
+    <div class="big">${fmtBig(res)} <small style="font-size:16px;color:var(--muted)">${to}</small></div>`;
+}
+/* ---------------- UNIT: cups <-> grams ---------------- */
+function cgConv(){
+  const a=parseFloat($('cg-amt').value)||0, u=$('cg-unit').value, ing=$('cg-ing').value, d=ING[ing].d;
+  let grams;
+  if(u==='cup'||u==='tbsp'||u==='tsp'){ const cups=a*VOL[u]/VOL.cup; grams=cups*d; }
+  else { grams=a*WT[u]; }
+  const cups=grams/d;
+  const html=`<h3 data-i18n="lbl_result">${t('lbl_result')}</h3>
+    <div class="big">${fmtBig(grams)} <small style="font-size:16px;color:var(--muted)">g</small></div>
+    <div class="kv">
+      <div><b>grams (g)</b><span>${fmtBig(grams)}</span></div>
+      <div><b>ounces (oz)</b><span>${fmtBig(grams/WT.oz)}</span></div>
+      <div><b>pounds (lb)</b><span>${fmtBig(grams/WT.lb)}</span></div>
+      <div><b>cups</b><span>${fmtBig(cups)}</span></div>
+      <div><b>tablespoons</b><span>${fmtBig(cups*16)}</span></div>
+      <div><b>teaspoons</b><span>${fmtBig(cups*48)}</span></div>
+    </div>
+    <p class="note">${ingName(ING[ing])}: ~${d} g per US cup. Approximate; for baking precision use a scale.</p>`;
+  $('cg-out').innerHTML=html;
+}
+
+/* ---------------- subtabs ---------------- */
+function setCtab(btn){
+  document.querySelectorAll('.subtabs [data-ctab]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const tab=btn.getAttribute('data-ctab');
+  $('ctab-vol').style.display = tab==='vol'?'block':'none';
+  $('ctab-wt').style.display = tab==='wt'?'block':'none';
+  $('ctab-cg').style.display = tab==='cg'?'block':'none';
+}
+
+/* ---------------- RECIPE SCALER ---------------- */
+function parseQty(s){
+  s=s.trim();
+  let m=s.match(/^(\d+(?:\.\d+)?)\s+(\d+)\/(\d+)$/);
+  if(m) return parseFloat(m[1])+parseInt(m[2])/parseInt(m[3]);
+  m=s.match(/^(\d+)\/(\d+)$/);
+  if(m) return parseInt(m[1])/parseInt(m[2]);
+  m=s.match(/^(\d+(?:\.\d+)?)$/);
+  if(m) return parseFloat(m[1]);
+  return null;
+}
+function fmtQty(n){
+  if(!isFinite(n)) return '0';
+  if(Math.abs(n-Math.round(n))<1e-9) return String(Math.round(n));
+  const fr=[[0.125,'1/8'],[0.25,'1/4'],[0.333,'1/3'],[0.375,'3/8'],[0.5,'1/2'],[0.625,'5/8'],[0.667,'2/3'],[0.75,'3/4'],[0.875,'7/8']];
+  const whole=Math.floor(n), frac=n-whole;
+  for(const [v,str] of fr){ if(Math.abs(frac-v)<0.035) return (whole>0?whole+' ':'')+str; }
+  return String(Math.round(n*100)/100);
+}
+const PLURAL={cup:'cups',tablespoon:'tablespoons',teaspoon:'teaspoons',tbsp:'tbsp',tsp:'tsp',ounce:'ounces',oz:'oz',pound:'pounds',lb:'lb',gram:'grams',g:'g',kilogram:'kilograms',kg:'kg',ml:'ml',l:'l',liter:'liters',litre:'litres',clove:'cloves',pinch:'pinches',dash:'dashes',can:'cans',slice:'slices',piece:'pieces',stick:'sticks',bottle:'bottles',bag:'bags',egg:'eggs',handful:'handfuls',scoop:'scoops'};
+function pluralizeUnit(w,q){
+  if(q<=1) return w;
+  const low=w.toLowerCase();
+  if(!/^[a-z]+$/.test(low)) return w;
+  if(PLURAL[low]) return PLURAL[low];
+  if(/s$/.test(low)) return w;
+  return w+'s';
+}
+function scaleRecipe(){
+  const orig=parseFloat($('rs-orig').value)||0, tgt=parseFloat($('rs-target').value)||0;
+  if(orig<=0||tgt<=0){ $('rs-output').value=''; return; }
+  const f=tgt/orig;
+  const lines=$('rs-input').value.split('\n');
+  const out=lines.map(line=>{
+    const m=line.match(/^(\s*[\d./]+(?:\s+\d+\/\d+)?)\s+(\S+)(?:\s+(.*))?$/);
+    if(!m) return line;
+    const q=parseQty(m[1]);
+    if(q==null) return line;
+    const scaled=q*f; const unitOut=pluralizeUnit(m[2],scaled); return fmtQty(scaled)+' '+unitOut+(m[3]?' '+m[3]:'');
+  }).join('\n');
+  $('rs-output').value=out;
+}
+
+/* ---------------- OVEN ---------------- */
+function nearestGas(c){ let best=GAS[0]; for(const g of GAS){ if(Math.abs(g[0]-c)<Math.abs(best[0]-c)) best=g; } return best; }
+function ovenConv(){
+  const v=parseFloat($('ov-temp').value)||0, sc=$('ov-scale').value;
+  let f,c;
+  if(sc==='F'){f=v;c=(v-32)*5/9;} else {c=v;f=v*9/5+32;}
+  const gas=nearestGas(c);
+  const fanC=c-20, fanF=fanC*9/5+32;
+  $('ov-out').innerHTML=`<div class="kv">
+      <div><b>°C</b><span>${Math.round(c)}</span></div>
+      <div><b>°F</b><span>${Math.round(f)}</span></div>
+      <div><b data-i18n="lbl_gas">${t('lbl_gas')}</b><span>${gas[1]}</span></div>
+      <div><b>Fan °C</b><span>${Math.round(fanC)}</span></div>
+      <div><b>Fan °F</b><span>${Math.round(fanF)}</span></div>
+    </div>
+    <p class="note">${t('lbl_fan_note')}</p>`;
+}
+function presetOven(v,sc){ $('ov-temp').value=v; $('ov-scale').value=sc; ovenConv(); }
+
+/* ---------------- SUBSTITUTION ---------------- */
+function renderSub(){
+  const sel=$('sub-sel');
+  if(!sel.options.length){
+    sel.innerHTML=Object.keys(SUB).map(k=>`<option value="${k}">${ingName(SUB[k])}</option>`).join('');
+  }
+  const k=$('sub-sel').value;
+  const item=SUB[k]; if(!item) return;
+  const rows=item.swaps.map(s=>`<div class="swap"><h4>${ingName(item)} →</h4><p>${lang==='zh'?s.zh:s.en}</p></div>`).join('');
+  $('sub-out').innerHTML=`<h3 data-i18n="lbl_substitutes" style="margin-top:14px">${t('lbl_substitutes')}</h3>${rows}
+    <p class="note">${lang==='zh'?'替代品用量通常按等量替换，除非另有说明。':'Swaps are usually 1:1 unless noted otherwise.'}</p>`;
+}
+
+/* ---------------- NUTRITION ---------------- */
+function renderNutriOptions(sel){
+  sel.innerHTML=Object.keys(NUT).map(k=>`<option value="${k}">${ingName(NUT[k])}</option>`).join('');
+}
+function addNutriRow(ing,amt,unit){
+  const body=$('nutri-rows');
+  const row=document.createElement('div'); row.className='row'; row.style.marginBottom='10px';
+  row.innerHTML=`
+    <div class="field" style="flex:2"><label data-i18n="lbl_ingredient">${t('lbl_ingredient')}</label><select class="nr-ing"></select></div>
+    <div class="field" style="flex:1"><label data-i18n="lbl_amount">${t('lbl_amount')}</label><input type="number" class="nr-amt" value="${amt!=null?amt:100}" step="any" oninput="nutriCalc()" /></div>
+    <div class="field" style="flex:1"><label data-i18n="lbl_unit">${t('lbl_unit')}</label>
+      <select class="nr-unit" onchange="nutriCalc()"><option value="g">${t('unit_g')}</option><option value="cup">${t('unit_cup')}</option><option value="ml">${t('unit_ml')}</option></select></div>
+    <button class="btn sec" style="align-self:flex-end" onclick="this.parentNode.remove();nutriCalc()" data-i18n="btn_copy">✕</button>`;
+  body.appendChild(row);
+  renderNutriOptions(row.querySelector('.nr-ing'));
+  row.querySelector('.nr-ing').value = ing || Object.keys(NUT)[0];
+  row.querySelector('.nr-unit').value = unit || 'g';
+  row.querySelector('.nr-ing').onchange=nutriCalc;
+  nutriCalc();
+}
+function nutriCalc(){
+  const rows=document.querySelectorAll('#nutri-rows .row');
+  let K=0,P=0,F=0,C=0;
+  rows.forEach(r=>{
+    const k=r.querySelector('.nr-ing').value;
+    const amt=parseFloat(r.querySelector('.nr-amt').value)||0;
+    const unit=r.querySelector('.nr-unit').value;
+    const o=NUT[k]; if(!o) return;
+    let grams=amt;
+    if(unit==='cup'){ grams = o.d ? amt*(VOL.cup/o.d) : amt; }
+    else if(unit==='ml'){ grams = amt; }
+    const fac=grams/100;
+    K+=o.k*fac; P+=o.p*fac; F+=(o.f0!=null?o.f0:o.f)*fac; C+=o.c*fac;
+  });
+  const serv=parseFloat($('rs-target')?0:0); // unused
+  $('nutri-out').innerHTML=`<div class="kv">
+      <div><b data-i18n="lbl_kcal">${t('lbl_kcal')}</b><span>${fmtBig(K)} kcal</span></div>
+      <div><b data-i18n="lbl_protein">${t('lbl_protein')}</b><span>${fmtBig(P)} g</span></div>
+      <div><b data-i18n="lbl_fat">${t('lbl_fat')}</b><span>${fmtBig(F)} g</span></div>
+      <div><b data-i18n="lbl_carbs">${t('lbl_carbs')}</b><span>${fmtBig(C)} g</span></div>
+    </div>`;
+}
+
+/* ---------------- LIQUID ---------------- */
+function liqConv(){
+  const a=parseFloat($('liq-amt').value)||0, f=$('liq-from').value, to=$('liq-to').value;
+  const res=a*LIQ[f]/LIQ[to];
+  const labels={ml:'ml',floz:'fl oz',shot:'shots',cup:'cups',liter:'L'};
+  $('liq-out').innerHTML=`<div class="kv">
+    <div><b>ml</b><span>${fmtBig(a*LIQ[f]/LIQ.ml)}</span></div>
+    <div><b>fl oz</b><span>${fmtBig(a*LIQ[f]/LIQ.floz)}</span></div>
+    <div><b>shots</b><span>${fmtBig(a*LIQ[f]/LIQ.shot)}</span></div>
+    <div><b>cups</b><span>${fmtBig(a*LIQ[f]/LIQ.cup)}</span></div>
+    <div><b>L</b><span>${fmtBig(a*LIQ[f]/LIQ.liter)}</span></div>
+  </div>
+  <p class="note">Result: <b>${fmtBig(res)} ${labels[to]}</b></p>`;
+}
+
+/* ---------------- COOK TIME ---------------- */
+function setTtab(btn){
+  document.querySelectorAll('.subtabs [data-ttab]').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const tab=btn.getAttribute('data-ttab');
+  $('ttab-a').style.display = tab==='a'?'block':'none';
+  $('ttab-b').style.display = tab==='b'?'block':'none';
+}
+function hm(min){
+  min=Math.max(0,Math.round(min));
+  const h=Math.floor(min/60), m=min%60;
+  return h>0?`${h} h ${m} min`:`${m} min`;
+}
+function timeByWeight(){
+  const w=parseFloat($('time-w').value)||0;
+  const pro=$('time-pro').value;
+  const total=w*RATE[pro];
+  const conv=total*0.8;
+  $('time-a-out').innerHTML=`<div class="kv">
+      <div><b>Standard oven</b><span>${hm(total)}</span></div>
+      <div><b>Convection / fan</b><span>${hm(conv)}</span></div>
+    </div>
+    <p class="note">${t('time_fan_note')} ${ingName({en:'Use a meat thermometer to confirm doneness.',zh:'请用肉类温度计确认熟度。'})}</p>`;
+}
+function timeScale(){
+  const ow=parseFloat($('ts-ow').value)||0, ot=parseFloat($('ts-ot').value)||0, nw=parseFloat($('ts-nw').value)||0;
+  if(ow<=0){ $('time-b-out').innerHTML=''; return; }
+  const nt=ot*Math.pow(nw/ow,2/3);
+  $('time-b-out').innerHTML=`<div class="big">${hm(nt)}</div>
+    <p class="note">${t('time_formula')}</p>`;
+}
+
+/* ---------------- SERVING ---------------- */
+function servingCalc(){
+  const g=parseFloat($('sv-guests').value)||0;
+  const body=$('sv-body');
+  const keys=['rice','pasta','meat','potato','veg','bread'];
+  body.innerHTML=keys.map(k=>{
+    const total=g*PER[k];
+    return `<tr><td>${t('sv_'+k)}</td><td><input type="number" value="${PER[k]}" step="any" data-k="${k}" oninput="servingEdit(this)" style="width:90px;display:inline-block" /></td><td><b>${fmtBig(total)} g</b></td></tr>`;
+  }).join('');
+  let sum=0; keys.forEach(k=>sum+=g*PER[k]);
+  $('sv-total').style.display='block';
+  $('sv-total').innerHTML=`<b data-i18n="sv_total">${t('sv_total')}</b> ${fmtBig(sum)} g (${fmtBig(sum/1000)} kg) for ${g} ${g===1?t('lbl_guests').toLowerCase().replace('s',''):t('lbl_guests').toLowerCase()} — ${t('sv_item')} total.`;
+}
+function servingEdit(inp){
+  const k=inp.getAttribute('data-k');
+  PER[k]=parseFloat(inp.value)||0;
+  servingCalc();
+}
+
+/* ---------------- FAQ ---------------- */
+function renderFaq(){
+  $('faq-list').innerHTML=FAQ.map(f=>`<div class="qa"><h3>${lang==='zh'?f.q_zh:f.q_en}</h3><p>${lang==='zh'?f.a_zh:f.a_en}</p></div>`).join('');
+}
+
+/* ---------------- showTool ---------------- */
+function showTool(id){
+  const sec=$('tool-'+id);
+  if(sec) sec.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.tbtn').forEach(b=>b.classList.toggle('active',b.getAttribute('data-tool')===id));
+}
+
+/* ---------------- refresh all ---------------- */
+function refreshAll(){
+  volConv(); wtConv(); cgConv(); scaleRecipe(); ovenConv(); renderSub();
+  nutriCalc(); liqConv(); timeByWeight(); timeScale(); servingCalc();
+}
+
+/* ---------------- init ---------------- */
+(function init(){
+  const savedTheme=localStorage.getItem('mestura-theme');
+  if(savedTheme==='dark' || (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)){
+    document.documentElement.classList.add('dark');
+  }
+  // URL ?lang= overrides
+  const p=new URL(location.href).searchParams.get('lang');
+  if(p==='en'||p==='zh') lang=p;
+  // seed nutrition rows
+  addNutriRow('all_purpose_flour',200,'g');
+  addNutriRow('chicken_breast',150,'g');
+  addNutriRow('olive_oil',15,'ml');
+  applyI18n();
+})();
+</script>
+</body>
+</html>
